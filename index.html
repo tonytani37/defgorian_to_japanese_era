@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gregorian to Japanese Era Converter</title>
+</head>
+<body>
+    <h1>Gregorian to Japanese Era Converter</h1>
+    <input type="number" id="gregorianYear" placeholder="Enter Gregorian year">
+    <button onclick="convertToJapaneseEra()">Convert</button>
+    <p id="result"></p>
+
+    <script>
+        function convertToJapaneseEra() {
+            const year = document.getElementById("gregorianYear").value;
+            let era = "";
+            let eraYear = 0;
+
+            if (year >= 2019) {
+                era = "Reiwa";
+                eraYear = year - 2018;
+            } else if (year >= 1989) {
+                era = "Heisei";
+                eraYear = year - 1988;
+            } else if (year >= 1926) {
+                era = "Showa";
+                eraYear = year - 1925;
+            } else if (year >= 1912) {
+                era = "Taisho";
+                eraYear = year - 1911;
+            } else if (year >= 1868) {
+                era = "Meiji";
+                eraYear = year - 1867;
+            } else {
+                document.getElementById("result").innerText = "Periods before Meiji are not supported.";
+                return;
+            }
+
+            if (eraYear === 1) {
+                eraYear = "First";
+            }
+
+            document.getElementById("result").innerText = `${year} is ${era} ${eraYear} year in the Japanese calendar.`;
+        }
+    </script>
+</body>
+</html>
