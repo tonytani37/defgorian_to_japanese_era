@@ -18,19 +18,19 @@
             let eraYear = 0;
 
             if (year >= 2019) {
-                era = "Reiwa";
+                era = "令和";
                 eraYear = year - 2018;
             } else if (year >= 1989) {
-                era = "Heisei";
+                era = "平成";
                 eraYear = year - 1988;
             } else if (year >= 1926) {
-                era = "Showa";
+                era = "昭和";
                 eraYear = year - 1925;
             } else if (year >= 1912) {
-                era = "Taisho";
+                era = "大正";
                 eraYear = year - 1911;
             } else if (year >= 1868) {
-                era = "Meiji";
+                era = "明治";
                 eraYear = year - 1867;
             } else {
                 document.getElementById("result").innerText = "Periods before Meiji are not supported.";
@@ -41,7 +41,7 @@
                 eraYear = "First";
             }
 
-            document.getElementById("result").innerText = `${year} is ${era} ${eraYear} year in the Japanese calendar.`;
+            document.getElementById("result").innerText = `西暦 ${year} 年は 和暦では ${era} ${eraYear} 年です`;
         }
     </script>
 </body>
