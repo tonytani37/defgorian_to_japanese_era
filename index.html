@@ -3,14 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style> 
+        .custom-container { 
+            max-width: 2400px; /* 最大幅を指定 */ 
+            margin: 0 auto; /* 中央揃え */ 
+            } 
+        .custom-max-width { 
+            max-width: 1200px; /* 最大幅を指定 */ 
+            margin: 0 auto; /* 中央揃え */ 
+            width: 100%; /* レスポンシブ対応 */ 
+            }
+        .bg-purple { 
+            background-color: #7d2982; /* 紫色 */ 
+            }
+    </style>
     <title>西暦から和暦へ変換します</title>
 </head>
 <body>
-    <h1>西暦から和暦へ変換します</h1>
-    <input type="number" id="gregorianYear" placeholder="Enter Gregorian year">
-    <button onclick="convertToJapaneseEra()">Convert</button>
-    <p id="result"></p>
-
+    <h1>西暦和暦変換</h1>
+    <div="container">
+        <input type="tel" id="gregorianYear" placeholder="年を指定してね">
+        <button onclick="convertToJapaneseEra()">変換！</button>
+        <p id="result"></p>
+    </div>
     <script>
         function convertToJapaneseEra() {
             const year = document.getElementById("gregorianYear").value;
@@ -41,7 +56,8 @@
                 eraYear = "元";
             }
 
-            document.getElementById("result").innerText = `西暦${year}年を和暦に変換すると${era} ${eraYear}年です`;
+            // document.getElementById("result").innerText = `西暦${year}年を和暦に変換すると${era} ${eraYear}年です`;
+            document.getElementById("result").innerText = `${era} ${eraYear}年`;
         }
     </script>
 </body>
