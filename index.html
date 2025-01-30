@@ -61,16 +61,26 @@
             const selectedValue = dropdown.value;
  
             if (selectedValue == 'seireki') {
-                if (wareki >= 2019) {
+                if (wareki > 2019) {
                     year = `令和${wareki - 2018}年`;
-                } else if (wareki >= 1989) {
+                } else if (wareki == 2019) {
+                    year = '令和元年' ;
+                } else if (wareki > 1989) {
                     year = `平成${wareki - 1988}年`;
-                } else if (wareki >= 1926) {
+                } else if (wareki == 1989) {
+                    year = '平成元年' ;
+                } else if (wareki > 1926) {
                     year = `昭和${wareki - 1925}年`;
-                } else if (wareki >= 1912) {
+                } else if (wareki == 1926) {
+                    year = '昭和元年' ;
+                } else if (wareki > 1912) {
                     year = `大正${wareki - 1911}年`;
-                } else if (wareki >= 1868) {
+                } else if (wareki == 1912) {
+                    year = '大正元年' ;
+                } else if (wareki > 1868) {
                     year = `明治${wareki - 1867}年`;
+                } else if (wareki == 1868) {
+                    year = '明治元年' ;
                 } else {
                     year = '不明な西暦です';
                 }
