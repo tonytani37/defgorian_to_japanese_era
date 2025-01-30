@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>和暦・西暦変換</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        input, button { margin: 5px; }
+    </style>
+</head>
+<body>
+    <h1>和暦・西暦変換</h1>
+    <div>
+        <h3>和暦・西暦 Convert Japanes Western Calender</h3>
+        <select id="dropdown">
+            <option value="seireki">西暦</option>
+            <option value="meiji">明治</option>
+            <option value="taisho">大正</option>
+            <option value="showa">昭和</option>
+            <option value="heisei">平成</option>
+            <option value="reiwa">令和</option>
+        </select>
+        <input type="tel" id="wareki">
+        <button onclick="convertToSeireki()">変換</button>
+        <h2><p id="result-seireki"></p></h2>
+    </div>
+    <script>
+        function convertToSeireki() {
+            const wareki = document.getElementById('wareki').value;
+            let year;
+
+            const dropdown = document.getElementById('dropdown');
+            const selectedValue = dropdown.value;
+ 
+            if (selectedValue == 'seireki') {
+                if (wareki >= 2019) {
+                    year = `令和${wareki - 2018}年`;
+                } else if (wareki >= 1989) {
+                    year = `平成${wareki - 1988}年`;
+                } else if (wareki >= 1926) {
+                    year = `昭和${wareki - 1925}年`;
+                } else if (wareki >= 1912) {
+                    year = `大正${wareki - 1911}年`;
+                } else if (wareki >= 1868) {
+                    year = `明治${wareki - 1867}年`;
+                } else {
+                    year = '不明な西暦です';
+                }
+            } else if (selectedValue == 'reiwa') {
+                year = 2018 + parseInt(wareki)+'年';
+            } else if (selectedValue == 'heisei')  {
+                year = 1988 + parseInt(wareki)+'年';
+            } else if (selectedValue == 'showa')  {
+                year = 1925 + parseInt(wareki)+'年'; 
+            } else if (selectedValue == 'taisho') {
+                year = 1911 + parseInt(wareki)+'年';
+            } else if (selectedValue == 'meiji') {
+                year = 1867 + parseInt(wareki)+'年';
+            } else {
+                    year = '不明な和暦です';
+                }
+
+            document.getElementById('result-seireki').innerText = year ? `${year}` : '不正な入力です';
+        }
+
+    </script>
+</body>
+</html>
