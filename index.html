@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="statics/img/favicon.png">
     <style> 
         .custom-container { 
             max-width: 2400px; /* 最大幅を指定 */ 
             margin: 0 auto; /* 中央揃え */ 
             } 
         .custom-max-width { 
-            max-width: 1200px; /* 最大幅を指定 */ 
+            max-width: 80px; /* 最大幅を指定 */ 
             margin: 0 auto; /* 中央揃え */ 
             width: 100%; /* レスポンシブ対応 */ 
             }
@@ -20,7 +21,12 @@
     <title>西暦から和暦へ変換します</title>
 </head>
 <body>
-    <h1>西暦和暦変換</h1>
+    <div class="'container"></div>
+    <div class="row">
+        <img src="statics/img/favicon.png" alt="タイトル" class="custom-max-width">
+    <!-- <h1>西暦和暦変換</h1> -->
+    </div>
+    <div class="'row">
     <div="container">
         <input type="tel" id="gregorianYear" placeholder="年を指定してね">
         <button onclick="convertToJapaneseEra()">変換！</button>
