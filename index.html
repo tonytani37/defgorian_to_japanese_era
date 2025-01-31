@@ -33,32 +33,34 @@
         <div class="custom-max-width text-center">
             <img src="statics/img/favicon.png" alt="タイトル" class="img-fluid custom-max-width">
         </div>
-        <div class="text-center large-input">
-            <select id="dropdown">
-                <option value="seireki">西暦</option>
-                <option value="reiwa">令和</option>
-                <option value="heisei">平成</option>
-                <option value="showa">昭和</option>
-                <option value="taisho">大正</option>
-                <option value="meiji">明治</option>
-            </select>
-            <input type="tel" id="wareki" placeholder="和暦の元年は１です"> 
+            <div class="text-center large-input">
+                <select id="dropdown">
+                    <option value="seireki">西暦</option>
+                    <option value="reiwa">令和</option>
+                    <option value="heisei">平成</option>
+                    <option value="showa">昭和</option>
+                    <option value="taisho">大正</option>
+                    <option value="meiji">明治</option>
+                </select>
+                <input type="tel" id="wareki" placeholder="和暦の元年は１です"> 
                 <div class="'text-center">
                     <button onclick="convertToSeireki()">変換</button>
                 </div>
-        </div>
-        <div class="text-center">
-            （注意）<br>
-            <a href="https://tonytani37.github.io/defgorian_to_japanese_era/gengo.html">
-            元号が変わった年はすべて<br>
-            新しい元号になってますよ</a>
-        </div>
-        <hr>
-        <div class="cumstom-max-width text-center">
-            <br>
-            <h2><p id="result-seireki"></p></h2>
+                <div class="text-center">
+                    （注意）<br>
+                    <a href="https://tonytani37.github.io/defgorian_to_japanese_era/gengo.html">
+                    元号が変わった年はすべて<br>
+                    新しい元号になってますよ</a>
+                </div>
+                <hr>
+                <div class="cumstom-max-width text-center">
+                    <br>
+                    <h2><p id="result-seireki"></p></h2>
+                </div>
+            </div>
         </div>
     </div>
+
     <script>
         function convertToSeireki() {
             const wareki = document.getElementById('wareki').value;
@@ -107,7 +109,6 @@
 
             document.getElementById('result-seireki').innerText = year ? `${year}` : '不正な入力です';
         }
-
     </script>
 </body>
 </html>
