@@ -14,19 +14,26 @@
             margin: 0 auto; /* 中央揃え */ 
             } 
         .custom-max-width { 
-            max-width: 300px; /* 最大幅を指定 */ 
+            max-width: 150px; /* 最大幅を指定 */ 
             margin: 0 auto; /* 中央揃え */ 
-            width: 90%; /* レスポンシブ対応 */ 
+            width: 80%; /* レスポンシブ対応 */ 
             }
+        .large-input {
+            width: 100%;
+            height: 50px; /* 高さを指定 */
+            font-size: 18px; /* テキストのサイズを指定 */
+            padding: 10px; /* 内側の余白を指定 */
+            box-sizing: border-box; /* パディングを含むボックスサイズを計算 */
+        }
     </style>
 </head>
 <body>
     <!-- <h1>和暦・西暦変換</h1> -->
     <div class='custom-container'>
-        <div class="row">
+        <div class="custom-max-width text-center">
             <img src="statics/img/favicon.png" alt="タイトル" class="img-fluid custom-max-width">
         </div>
-        <div class="cumstom-max-width text-center">
+        <div class="text-center large-input">
             <select id="dropdown">
                 <option value="seireki">西暦</option>
                 <option value="reiwa">令和</option>
@@ -35,7 +42,7 @@
                 <option value="taisho">大正</option>
                 <option value="meiji">明治</option>
             </select>
-            <input type="tel" id="wareki" placeholder="和暦の元年は１">
+            <input type="tel" id="wareki" placeholder="和暦の元年は１です">
         </div>
         <div class="text-center">       
             <button onclick="convertToSeireki()">変換</button>
