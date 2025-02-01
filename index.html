@@ -94,10 +94,10 @@
                 } else {
                     year = '入力値が不正です';
                 }
-            } else if (wareki.length == 0) {
+            } else if (wareki.length == 0 || wareki < 1) {
                     year = '入力値が不正です';
             } else if (wareki.length > 2) {
-                year = '入力桁数が長すぎです';               
+                year = '入力桁数が長すぎです'; 
             } else if (selectedValue == 'reiwa') {
                 year = 2018 + parseInt(wareki)+'年';
             } else if (selectedValue == 'heisei' && wareki < 31)  {
