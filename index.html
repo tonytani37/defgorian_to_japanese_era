@@ -69,7 +69,6 @@
             location.reload();
         }
         window.onload = function() {
-            document.getElementById("wareki").focus();
             let now = new Date();
             // 年、月、日を取得
             let year_now = now.getFullYear();
@@ -77,6 +76,7 @@
             let day_now = now.getDate();
             let cal_now = year_now +'年' + month_now + '月' + day_now + '日'
             document.getElementById('today-seiwareki').innerText = '本日は'+cal_now;
+            document.getElementById("wareki").focus();
             // 他の初期化コードをここに書きます
         };
 
