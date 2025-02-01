@@ -69,9 +69,11 @@
             location.reload();
         }
 
-        // function setFocusToInput() {
-        //     document.getElementById("wareki").focus();
-        // }
+        function setFocusToInput() {
+            document.getElementById("wareki").focus();
+        }
+        
+        document.addEventListener('DOMContentLoaded', setFocusToInput);
 
         window.onload = 
             function() {
@@ -82,20 +84,8 @@
                 let day_now = now.getDate();
                 let cal_now = year_now +'年' + month_now + '月' + day_now + '日'
                 document.getElementById('today-seiwareki').innerText = '本日は'+cal_now;
-                document.getElementById("wareki").focus();
+                // document.getElementById("wareki").focus();
 
-        }
-
-        function convertToWareki(wareki,result) {
-            if (wareki.length == 0 || wareki < 1) {
-                    return '入力値が不正です';
-            } else if (wareki.length > 2) {
-                return '入力桁数が長すぎです'; 
-            } else if (result.leng > wareki){
-                return result.from + parseInt(wareki)+'年';
-            } else {
-                return '入力値が不正です'
-            }
         }
 
         function convertToSeireki() {
@@ -104,7 +94,7 @@
 
             const dropdown = document.getElementById('dropdown');
             const selectedValue = dropdown.value;
-            
+ 
             if (selectedValue == 'seireki') {
                 if (wareki > 2019) {
                     year = `令和${wareki - 2018}年`;
@@ -129,19 +119,25 @@
                 } else {
                     year = '入力値が不正です';
                 }
+            } else if (wareki.length == 0 || wareki < 1) {
+                    year = '入力値が不正です';
+            } else if (wareki.length > 2) {
+                year = '入力桁数が長すぎです'; 
+            } else if (selectedValue == 'reiwa') {
+                year = 2018 + parseInt(wareki)+'年';
+            } else if (selectedValue == 'heisei' && wareki < 31)  {
+                year = 1988 + parseInt(wareki)+'年';
+            } else if (selectedValue == 'showa' && wareki < 63)  {
+                year = 1925 + parseInt(wareki)+'年'; 
+            } else if (selectedValue == 'taisho'　&& wareki < 15) {
+                year = 1911 + parseInt(wareki)+'年';
+            } else if (selectedValue == 'meiji' && wareki < 45) {
+                year = 1867 + parseInt(wareki)+'年';
             } else {
-                let gengo_list = [
-                    {'gengo':'reiwa','from':2018,'leng':999},
-                    {'gengo':'heisei','from':1988,'leng':31},
-                    {'gengo':'showa','from':1925,'leng':63},
-                    {'gengo':'taisho','from':1911,'leng':15},
-                    {'gengo':'meiji','from':1867,'leng':45},
-                    ]
-                let searchGengo = selectedValue;
-                let result = gengo_list.find(item => item.gengo === searchGengo);
-                year = convertToWareki(wareki,result);
-                } 
-            document.getElementById('result-seireki').innerText = year ;
+                    year = '入力値が不正です';
+                }
+
+            document.getElementById('result-seireki').innerText = year ? `${year}` : '不正な入力です';
         }
     </script>
 </body>
