@@ -34,7 +34,7 @@
     <!-- <h1>和暦・西暦変換</h1> -->
     <div class='custom-container'>
         <div class="custom-max-width text-center">
-            <img src="statics/img/favicon.png" alt="タイトル" class="img-fluid custom-max-width">
+            <img src="statics/img/favicon.png" alt="タイトル" class="img-fluid custom-max-width" onclick="page_reloted()">
         </div>
             <div class="text-center large-input">
                 <select id="dropdown">
@@ -50,8 +50,10 @@
                     <button class="btn btn-lg btn-primary custom-width" onclick="convertToSeireki()">変換</button>
                 </div>
                 <div class="row">
+   
                     (注意)<a href="https://tonytani37.github.io/defgorian_to_japanese_era/gengo.html">
                     元号が変わった年はすべて新元号にしてます</a>
+                    <h5><p id="today-seiwareki"></p></h5>
                 </div>
                 <hr>
                 <div class="cumstom-max-width text-center">
@@ -63,6 +65,20 @@
     </div>
 
     <script>
+        function page_reloted(){
+            location.reload();
+        }
+        window.onload = function() {
+            let now = new Date();
+            // 年、月、日を取得
+            let year_now = now.getFullYear();
+            let month_now = now.getMonth()+1;
+            let day_now = now.getDate();
+            let cal_now = year_now +'年' + month_now + '月' + day_now + '日'
+            document.getElementById('today-seiwareki').innerText = '本日は'+cal_now;
+            // 他の初期化コードをここに書きます
+        };
+
         function convertToSeireki() {
             const wareki = document.getElementById('wareki').value;
             let year;
