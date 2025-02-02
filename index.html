@@ -143,15 +143,13 @@
         function convertToSeirekiWareki() {
             const wareki = document.getElementById('wareki').value;
             let year;
-
             const dropdown = document.getElementById('dropdown');
-            const selectedValue = dropdown.value;
+            let  selectedValue = dropdown.value;
             
             if (selectedValue == 'seireki') {
                 year = convertToSeireki(wareki);
             } else {
-                let searchGengo = selectedValue;
-                year = convertToWareki(wareki,searchGengo);
+                year = convertToWareki(wareki,selectedValue);
                 } 
             document.getElementById('result-seireki').innerText = year ;
         }
