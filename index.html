@@ -83,7 +83,7 @@
                 let month_now = now.getMonth()+1;
                 let day_now = now.getDate();
 
-                let cal_now_wareki = convertToSeireki(year_now);
+                cal_now_wareki = convertToSeireki(year_now);
 
                 let cal_now = year_now +'年（' + cal_now_wareki[0] + '）' + month_now + '月' + day_now + '日';
                 document.getElementById('today-seiwareki').innerText = '本日は'+cal_now;
