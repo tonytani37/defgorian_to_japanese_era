@@ -47,7 +47,7 @@
                 </select>
                 <input type="tel" id="wareki" placeholder="和暦の元年は１です"> 
                 <div class="'text-center">
-                    <button class="btn btn-lg btn-primary custom-width" onclick="convertToSeireki()">変換</button>
+                    <button class="btn btn-lg btn-primary custom-width" onclick="convertToSeirekiWareki()">変換</button>
                 </div>
                 <div class="row">
    
@@ -80,33 +80,40 @@
                 let year_now = now.getFullYear();
                 let month_now = now.getMonth()+1;
                 let day_now = now.getDate();
-                let cal_now = year_now +'年' + month_now + '月' + day_now + '日'
+
+                let cal_now_wareki = convertToSeireki(year_now);
+
+                let cal_now = year_now +'年（' + cal_now_wareki + '）' + month_now + '月' + day_now + '日'
                 document.getElementById('today-seiwareki').innerText = '本日は'+cal_now;
                 document.getElementById("wareki").focus();
 
         }
 
-        function convertToWareki(wareki,result) {
+        function convertToWareki(wareki,searchGengo) {
+            let gengo_list = [
+                    {'gengo':'reiwa','from':2018,'leng':999},
+                    {'gengo':'heisei','from':1988,'leng':31},
+                    {'gengo':'showa','from':1925,'leng':63},
+                    {'gengo':'taisho','from':1911,'leng':15},
+                    {'gengo':'meiji','from':1867,'leng':45},
+                    ]
+            let result = gengo_list.find(item => item.gengo === searchGengo);
+
             if (wareki.length == 0 || wareki < 1) {
-                    return '入力値が不正です';
+                    year =  '入力値が不正です';
             } else if (wareki.length > 2) {
-                return '入力桁数が長すぎです'; 
+                year =  '入力桁数が長すぎです'; 
             } else if (result.leng > wareki){
-                return result.from + parseInt(wareki)+'年';
+                year = result.from + parseInt(wareki)+'年';
             } else {
-                return '入力値が不正です'
+                year =  '入力値が不正です'
             }
+
+            return year
         }
 
-        function convertToSeireki() {
-            const wareki = document.getElementById('wareki').value;
-            let year;
-
-            const dropdown = document.getElementById('dropdown');
-            const selectedValue = dropdown.value;
-            
-            if (selectedValue == 'seireki') {
-                if (wareki > 2019) {
+        function convertToSeireki(wareki) {
+            if (wareki > 2019) {
                     year = `令和${wareki - 2018}年`;
                 } else if (wareki == 2019) {
                     year = '令和元年' ;
@@ -129,17 +136,22 @@
                 } else {
                     year = '入力値が不正です';
                 }
+
+                return year
+            }
+
+        function convertToSeirekiWareki() {
+            const wareki = document.getElementById('wareki').value;
+            let year;
+
+            const dropdown = document.getElementById('dropdown');
+            const selectedValue = dropdown.value;
+            
+            if (selectedValue == 'seireki') {
+                year = convertToSeireki(wareki);
             } else {
-                let gengo_list = [
-                    {'gengo':'reiwa','from':2018,'leng':999},
-                    {'gengo':'heisei','from':1988,'leng':31},
-                    {'gengo':'showa','from':1925,'leng':63},
-                    {'gengo':'taisho','from':1911,'leng':15},
-                    {'gengo':'meiji','from':1867,'leng':45},
-                    ]
                 let searchGengo = selectedValue;
-                let result = gengo_list.find(item => item.gengo === searchGengo);
-                year = convertToWareki(wareki,result);
+                year = convertToWareki(wareki,searchGengo);
                 } 
             document.getElementById('result-seireki').innerText = year ;
         }
