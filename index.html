@@ -101,17 +101,7 @@
                     ]
 
             let result = gengo_list.find(item => item.gengo === searchGengo);
-
-            if (wareki.length == 0 || wareki < 1) {
-                    year =  '入力値が不正です';
-            } else if (wareki.length > 2) {
-                year =  '入力桁数が長すぎです'; 
-            } else if (result.leng >= wareki){
-                year = result.from + parseInt(wareki)+'年';
-            } else {
-                year =  '入力値が対象外です'
-            }
-
+            
             if (result.leng == wareki) {
                 comm = result.comment_to;
             } else if (wareki == 1) {
@@ -120,35 +110,52 @@
                 comm = ' ';
             }
 
+            if (wareki.length == 0 || wareki < 1) {
+                    year =  '入力値が不正です';
+                    comm = '日付未入力か0ですよ'
+            } else if (wareki.length > 2) {
+                year =  '入力桁数が長すぎです'; 
+            } else if (result.leng >= wareki){
+                year = result.from + parseInt(wareki)+'年';
+            } else {
+                year =  '入力値が対象外です'
+            }
+
+ 
+
             return [year,comm];
         }
 
         function convertToSeireki(wareki) {
-            if (wareki > 2019) {
-                    year = `令和${wareki - 2018}年`;
-                } else if (wareki == 2019) {
-                    year = '令和元年' ;
-                } else if (wareki > 1989) {
-                    year = `平成${wareki - 1988}年`;
-                } else if (wareki == 1989) {
-                    year = '平成元年' ;
-                } else if (wareki > 1926) {
-                    year = `昭和${wareki - 1925}年`;
-                } else if (wareki == 1926) {
-                    year = '昭和元年' ;
-                } else if (wareki > 1912) {
-                    year = `大正${wareki - 1911}年`;
-                } else if (wareki == 1912) {
-                    year = '大正元年' ;
-                } else if (wareki > 1868) {
-                    year = `明治${wareki - 1867}年`;
-                } else if (wareki == 1868) {
-                    year = '明治元年' ;
-                } else {
-                    year = '入力値が不正です';
-                }
+            if (wareki.length > 4) {
+                year = ['入力値が不正です','長すぎ せめて4桁で']
+            } else if (wareki.length == 0 || wareki < 1) {
+                year = ['入力値が不正です','日付未入力か0']
+            } else if (wareki > 2019) {
+                    year = [`令和${wareki - 2018}年`,''];
+            } else if (wareki == 2019) {
+                year = ['令和元年', '令和元年は5月1日から'];
+            } else if (wareki > 1989) {
+                year = [`平成${wareki - 1988}年`,''];
+            } else if (wareki == 1989) {
+                year = ['平成元年','平成元年は1月8日から'] ;
+            } else if (wareki > 1926) {
+                year = [`昭和${wareki - 1925}年`,''];
+            } else if (wareki == 1926) {
+                year = ['昭和元年','昭和元年は12月25日から'] ;
+            } else if (wareki > 1912) {
+                year = [`大正${wareki - 1911}年`,''];
+            } else if (wareki == 1912) {
+                year = ['大正元年','大正元年は7月30日から' ];
+            } else if (wareki > 1868) {
+                year = [`明治${wareki - 1867}年`,''];
+            } else if (wareki == 1868) {
+                year = ['明治元年','明治元年は1月25日から'] ;
+            } else {
+                year = ['入力値が不正です','明治以前は対応してません'];
+            }
 
-                return [year,'']
+            return year
             }
 
         function convertToSeirekiWareki() {
