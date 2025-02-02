@@ -60,6 +60,7 @@
                 <div class="cumstom-max-width text-center">
                     <br>
                     <h2><p id="result-seireki"></p></h2>
+                    <p id='alart_message'></p>
                 </div>
             </div>
         </div>
@@ -84,7 +85,7 @@
 
                 let cal_now_wareki = convertToSeireki(year_now);
 
-                let cal_now = year_now +'年（' + cal_now_wareki + '）' + month_now + '月' + day_now + '日'
+                let cal_now = year_now +'年（' + cal_now_wareki[0] + '）' + month_now + '月' + day_now + '日';
                 document.getElementById('today-seiwareki').innerText = '本日は'+cal_now;
                 document.getElementById("wareki").focus();
 
@@ -92,25 +93,34 @@
 
         function convertToWareki(wareki,searchGengo) {
             let gengo_list = [
-                    {'gengo':'reiwa','from':2018,'leng':999},
-                    {'gengo':'heisei','from':1988,'leng':31},
-                    {'gengo':'showa','from':1925,'leng':63},
-                    {'gengo':'taisho','from':1911,'leng':15},
-                    {'gengo':'meiji','from':1867,'leng':45},
+                    {'gengo':'reiwa','from':2018,'leng':999,'comment_from':'令和元年は5月1日から','comment_to':''},
+                    {'gengo':'heisei','from':1988,'leng':31,'comment_from':'平成元年は1月8日から','comment_to':'平成31年は4月30日まで'},
+                    {'gengo':'showa','from':1925,'leng':64,'comment_from':'昭和元年は12月25日から','comment_to':'昭和64年は1月7日まで'},
+                    {'gengo':'taisho','from':1911,'leng':15,'comment_from':'大正元年は7月30日から','comment_to':'大正15年12月25日まで'},
+                    {'gengo':'meiji','from':1867,'leng':46,'comment_from':'明治元年は1月25日から','comment_to':'明治45年は7月30日まで'},
                     ]
+
             let result = gengo_list.find(item => item.gengo === searchGengo);
 
             if (wareki.length == 0 || wareki < 1) {
                     year =  '入力値が不正です';
             } else if (wareki.length > 2) {
                 year =  '入力桁数が長すぎです'; 
-            } else if (result.leng > wareki){
+            } else if (result.leng >= wareki){
                 year = result.from + parseInt(wareki)+'年';
             } else {
-                year =  '入力値が不正です'
+                year =  '入力値が対象外です'
             }
 
-            return year
+            if (result.leng == wareki) {
+                comm = result.comment_to;
+            } else if (wareki == 1) {
+                comm = result.comment_from;
+            } else {
+                comm = ' ';
+            }
+
+            return [year,comm];
         }
 
         function convertToSeireki(wareki) {
@@ -138,7 +148,7 @@
                     year = '入力値が不正です';
                 }
 
-                return year
+                return [year,'']
             }
 
         function convertToSeirekiWareki() {
@@ -152,7 +162,9 @@
             } else {
                 year = convertToWareki(wareki,selectedValue);
                 } 
-            document.getElementById('result-seireki').innerText = year ;
+
+            document.getElementById('result-seireki').innerText = year[0] ;
+            document.getElementById('alart_message').innerText = year[1] ;
         }
     </script>
 </body>
