@@ -96,8 +96,8 @@
                     {'gengo':'reiwa','from':2018,'leng':999,'comment_from':'令和元年は5月1日から','comment_to':''},
                     {'gengo':'heisei','from':1988,'leng':31,'comment_from':'平成元年は1月8日から','comment_to':'平成31年は4月30日まで'},
                     {'gengo':'showa','from':1925,'leng':64,'comment_from':'昭和元年は12月25日から','comment_to':'昭和64年は1月7日まで'},
-                    {'gengo':'taisho','from':1911,'leng':15,'comment_from':'大正元年は7月30日から','comment_to':'大正15年12月25日まで'},
-                    {'gengo':'meiji','from':1867,'leng':46,'comment_from':'明治元年は1月25日から','comment_to':'明治45年は7月30日まで'},
+                    {'gengo':'taisho','from':1911,'leng':14,'comment_from':'大正元年は7月30日から','comment_to':'大正15年12月25日まで'},
+                    {'gengo':'meiji','from':1867,'leng':45,'comment_from':'明治元年は1月25日から','comment_to':'明治45年は7月30日まで'},
                     ]
 
             let result = gengo_list.find(item => item.gengo === searchGengo);
@@ -132,19 +132,19 @@
             } else if (wareki > 2019) {
                     year = [`令和${wareki - 2018}年`,''];
             } else if (wareki == 2019) {
-                year = ['令和元年', '令和元年は5月1日から'];
+                year = ['令和元年', '令和元年は5月1日から それ以前は平成31年'];
             } else if (wareki > 1989) {
                 year = [`平成${wareki - 1988}年`,''];
             } else if (wareki == 1989) {
-                year = ['平成元年','平成元年は1月8日から'] ;
+                year = ['平成元年','平成元年は1月8日から それ以前は昭和64年'] ;
             } else if (wareki > 1926) {
                 year = [`昭和${wareki - 1925}年`,''];
             } else if (wareki == 1926) {
-                year = ['昭和元年','昭和元年は12月25日から'] ;
+                year = ['昭和元年','昭和元年は12月25日から それ以前は大正15年'] ;
             } else if (wareki > 1912) {
                 year = [`大正${wareki - 1911}年`,''];
             } else if (wareki == 1912) {
-                year = ['大正元年','大正元年は7月30日から' ];
+                year = ['大正元年','明治45年と大正元年の改元は7月30日から' ];
             } else if (wareki > 1868) {
                 year = [`明治${wareki - 1867}年`,''];
             } else if (wareki == 1868) {
