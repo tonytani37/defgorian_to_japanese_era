@@ -123,9 +123,12 @@
                 year =  '入力値が対象外です'
             }
 
-            your_age = new Date().getFullYear() - (result.from + parseInt(wareki)); 
-            age = 'あなたは今年で'+ your_age +'歳';
-
+            if (year == '入力値が不正です' || year == '入力桁数が長すぎです' || year == '入力値が対象外です') {
+                age = ' ';
+            } else { 
+                your_age = new Date().getFullYear() - (result.from + parseInt(wareki)); 
+                age = 'あなたは今年で'+ your_age +'歳';
+            }
 
             return [year,comm,age];
         }
@@ -159,8 +162,12 @@
                 year = ['入力値が不正です','明治以前は対応してません'];
             }
 
-            your_age = new Date().getFullYear() - wareki; 
-            age = 'あなたは今年で'+ your_age +'歳';
+            if (year[0] == '入力値が不正です') {
+                age = ' ';
+            } else {                
+                your_age = new Date().getFullYear() - wareki; 
+                age = 'あなたは今年で'+ your_age +'歳';
+            }
 
             year.push(age);
             
