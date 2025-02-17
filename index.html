@@ -62,6 +62,7 @@
                     <br>
                     <h2><p id="result-seireki"></p></h2>
                     <p id='alart_message'></p>
+                    <p id='your_age'></p>
                 </div>
             </div>
         </div>
@@ -122,7 +123,11 @@
                 year =  '入力値が対象外です'
             }
 
-            return [year,comm];
+            your_age = new Date().getFullYear() - (result.from + parseInt(wareki)); 
+            age = 'あなたは今年で'+ your_age +'歳';
+
+
+            return [year,comm,age];
         }
 
         function convertToSeireki(wareki) {
@@ -131,29 +136,34 @@
             } else if (wareki.length == 0 || wareki < 1) {
                 year = ['入力値が不正です','日付未入力か0']
             } else if (wareki > 2019) {
-                    year = [`令和${wareki - 2018}年`,''];
+                    year = [`令和${wareki - 2018}年`,' '];
             } else if (wareki == 2019) {
                 year = ['令和元年', 'または平成31年 令和元年は5月1日から'];
             } else if (wareki > 1989) {
-                year = [`平成${wareki - 1988}年`,''];
+                year = [`平成${wareki - 1988}年`,' '];
             } else if (wareki == 1989) {
                 year = ['平成元年','または昭和64年 平成元年は1月8日から'] ;
             } else if (wareki > 1926) {
-                year = [`昭和${wareki - 1925}年`,''];
+                year = [`昭和${wareki - 1925}年`,' '];
             } else if (wareki == 1926) {
                 year = ['昭和元年','または大正15年 昭和元年は12月25日から'] ;
             } else if (wareki > 1912) {
-                year = [`大正${wareki - 1911}年`,''];
+                year = [`大正${wareki - 1911}年`,' '];
             } else if (wareki == 1912) {
                 year = ['大正元年','明治45年と大正元年の改元は7月30日から' ];
             } else if (wareki > 1868) {
-                year = [`明治${wareki - 1867}年`,''];
+                year = [`明治${wareki - 1867}年`,' '];
             } else if (wareki == 1868) {
                 year = ['明治元年','明治元年は1月25日から'] ;
             } else {
                 year = ['入力値が不正です','明治以前は対応してません'];
             }
 
+            your_age = new Date().getFullYear() - wareki; 
+            age = 'あなたは今年で'+ your_age +'歳';
+
+            year.push(age);
+            
             return year
             }
 
@@ -171,6 +181,7 @@
 
             document.getElementById('result-seireki').innerText = year[0] ;
             document.getElementById('alart_message').innerText = year[1] ;
+            document.getElementById('your_age').innerText = year[2] ;
         }
     </script>
 </body>
